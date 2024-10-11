@@ -29,11 +29,14 @@ impl Arguments {
             Err(_) => {
                 let flag = args[1].clone();
                 if flag.contains("-h") || flag.contains("-help") && args.len() == 2 {
-                    println!("Usage: -j to select how many threads you want -h or -help to show this help message");
+                    println!(
+                        "Usage: -j to select how many threads you want
+                    \r\n       -h or -help to show this help message"
+                    );
                     return Err("help");
                 } else if flag.contains("-h") || flag.contains("-help") {
                     return Err("to many arguments");
-                } else if flag.contains("-j") && args.len() == 3 {
+                } else if flag.contains("-j") && args.len() == 4 {
                     let ipaddr = match IpAddr::from_str(&args[3]) {
                         Ok(s) => s,
                         Err(_) => return Err("not a valid IPADDR; must be IPv4 or IPv6"),
